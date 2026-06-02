@@ -1,0 +1,43 @@
+/*
+ * WashConfirmationModal.css
+ * Supplementary styles for the wash confirmation modal.
+ * Base styles are inherited from ParkingPanel/CheckoutModal.css.
+ * This file adds only wash-specific overrides and accessibility enhancements.
+ *
+ * Requirements: 8.1, 8.3, 10.1, 10.4
+ */
+
+/* ===== Focus-visible styles for keyboard accessibility (WCAG 2.1 AA) ===== */
+.modal-content .payment-select:focus-visible,
+.modal-content .button:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
+}
+
+/* ===== Responsive: ensure no horizontal overflow on small viewports ===== */
+@media (max-width: 400px) {
+  .modal-content {
+    padding: 1.25rem;
+    width: 92%;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions .button {
+    width: 100%;
+  }
+}
+
+/* ===== Ensure text doesn't overflow horizontally ===== */
+.modal-content .value {
+  word-break: break-word;
+  text-align: right;
+}

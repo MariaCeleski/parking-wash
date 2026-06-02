@@ -1,0 +1,176 @@
+.price-grid {
+  width: 100%;
+}
+
+.price-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.price-grid-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.price-grid-table-wrapper {
+  overflow-x: auto;
+}
+
+.price-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.price-grid-table th {
+  text-align: center;
+  padding: 0.6rem 0.75rem;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  background: #f8f9ff;
+  border-bottom: 2px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+.price-grid-table th:first-child {
+  text-align: left;
+  min-width: 140px;
+}
+
+.price-grid-table td {
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.price-grid-table td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+.price-grid-table tbody tr:hover {
+  background: #fafbff;
+}
+
+/* Price cell styles */
+.price-cell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.price-cell-value {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.price-cell--default .price-cell-value {
+  color: #888;
+  font-style: italic;
+}
+
+.price-cell-badge {
+  font-size: 0.65rem;
+  color: #ff9800;
+  font-weight: 500;
+  background: #fff3e0;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* Loading state */
+.price-grid-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  color: #666;
+  gap: 0.75rem;
+}
+
+.price-grid-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e0e0e0;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: price-grid-spin 0.8s linear infinite;
+}
+
+@keyframes price-grid-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.price-grid-loading-text {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+/* Error state */
+.price-grid-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.price-grid-error-message {
+  color: #c33;
+  font-size: 0.9rem;
+  background: #fee;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #c33;
+}
+
+.price-grid-retry-btn {
+  padding: 0.4rem 1rem;
+  border: 2px solid #667eea;
+  border-radius: 6px;
+  background: white;
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.price-grid-retry-btn:hover {
+  background: #667eea;
+  color: white;
+}
+
+/* Empty state */
+.price-grid-empty {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .price-grid-table {
+    font-size: 0.8rem;
+  }
+
+  .price-grid-table th,
+  .price-grid-table td {
+    padding: 0.4rem 0.5rem;
+  }
+}

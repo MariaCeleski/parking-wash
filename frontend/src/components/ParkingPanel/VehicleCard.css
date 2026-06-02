@@ -1,0 +1,113 @@
+.vehicle-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+  min-height: 140px;
+}
+
+.vehicle-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.vehicle-info {
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.plate {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.timer {
+  font-size: 1rem;
+  color: #667eea;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+.checkout-button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  align-self: flex-start;
+}
+
+.checkout-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.checkout-button:active {
+  transform: translateY(0);
+}
+
+/* Tablet - 2 colunas */
+@media (min-width: 640px) {
+  .vehicle-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem;
+    min-height: auto;
+  }
+
+  .vehicle-info {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .plate {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .timer {
+    font-size: 0.95rem;
+  }
+
+  .checkout-button {
+    margin-left: 1rem;
+    align-self: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop - 3+ colunas */
+@media (min-width: 1024px) {
+  .vehicle-card {
+    padding: 1rem;
+  }
+
+  .plate {
+    font-size: 1.3rem;
+  }
+
+  .timer {
+    font-size: 1rem;
+  }
+
+  .checkout-button {
+    padding: 0.7rem 1.3rem;
+    font-size: 0.95rem;
+  }
+}

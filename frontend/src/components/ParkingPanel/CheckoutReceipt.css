@@ -1,0 +1,282 @@
+/* Checkout Receipt Modal */
+.receipt-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 380px;
+  width: 90%;
+  overflow: hidden;
+  animation: receipt-appear 0.4s ease-out;
+}
+
+@keyframes receipt-appear {
+  from {
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Success Header */
+.receipt-success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.success-checkmark {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  animation: checkmark-pop 0.5s ease-out 0.2s both;
+}
+
+@keyframes checkmark-pop {
+  from {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.receipt-success h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.receipt-success p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Receipt Body */
+.receipt-body {
+  padding: 1.25rem;
+}
+
+.receipt-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.receipt-date {
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1px dashed #e2e8f0;
+  margin: 0.75rem 0;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+}
+
+.receipt-label {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.receipt-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.receipt-value.plate {
+  font-family: monospace;
+  font-size: 1rem;
+  color: #667eea;
+  font-weight: 700;
+}
+
+/* Total */
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.receipt-total span:first-child {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.total-amount {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #16a34a;
+  font-family: 'Segoe UI', monospace;
+}
+
+/* Actions */
+.receipt-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.receipt-btn {
+  flex: 1;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.print-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.print-btn:hover {
+  background: #e2e8f0;
+}
+
+.close-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.close-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* ===== PRINT STYLES ===== */
+/* Hide everything except the receipt when printing */
+@media print {
+  /* Hide all page content */
+  body > *:not(#root) {
+    display: none !important;
+  }
+
+  /* Hide everything in the app except the overlay */
+  .app,
+  .app-header,
+  .app-nav,
+  .app-content,
+  .parking-panel,
+  .toast-container {
+    all: unset !important;
+    display: contents !important;
+  }
+
+  /* The overlay becomes the page */
+  .modal-overlay {
+    position: static !important;
+    background: none !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Receipt takes full width for printing */
+  .receipt-modal {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    animation: none !important;
+  }
+
+  /* Keep the green header but make it print-friendly */
+  .receipt-success {
+    background: #22c55e !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide buttons when printing */
+  .receipt-actions {
+    display: none !important;
+  }
+
+  /* Ensure text is black for readability */
+  .receipt-body {
+    padding: 1.5rem !important;
+  }
+
+  .receipt-row {
+    padding: 0.5rem 0 !important;
+  }
+
+  .receipt-label {
+    color: #333 !important;
+  }
+
+  .receipt-value {
+    color: #000 !important;
+  }
+
+  .receipt-value.plate {
+    color: #000 !important;
+  }
+
+  .total-amount {
+    color: #000 !important;
+    font-size: 1.5rem !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .receipt-modal {
+    width: 95%;
+    max-width: none;
+  }
+
+  .receipt-success {
+    padding: 1.25rem 1rem;
+  }
+
+  .receipt-body {
+    padding: 1rem;
+  }
+
+  .receipt-actions {
+    padding: 0 1rem 1rem;
+  }
+}

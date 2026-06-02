@@ -1,0 +1,228 @@
+.vehicle-type-manager {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top: 3px solid #ff9800;
+}
+
+.vtm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.vtm-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.vtm-add-btn {
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #4caf50;
+  border-radius: 6px;
+  background: white;
+  color: #4caf50;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vtm-add-btn:hover {
+  background: #4caf50;
+  color: white;
+}
+
+/* Table */
+.vtm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.vtm-table th {
+  text-align: left;
+  padding: 0.6rem 0.5rem;
+  color: #888;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.vtm-table td {
+  padding: 0.6rem 0.5rem;
+  color: #444;
+  border-bottom: 1px solid #f5f5f5;
+  vertical-align: middle;
+}
+
+.vtm-row-inactive {
+  opacity: 0.6;
+}
+
+.vtm-name {
+  font-weight: 500;
+}
+
+.vtm-code {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #667eea;
+}
+
+/* Status badge */
+.vtm-status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.vtm-active {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.vtm-inactive {
+  background: #fbe9e7;
+  color: #c62828;
+}
+
+/* Actions */
+.vtm-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.vtm-edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.vtm-edit-btn:hover {
+  background: #f0f0f0;
+}
+
+.vtm-toggle-btn {
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.2s;
+}
+
+.vtm-toggle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vtm-deactivate {
+  border-color: #ef5350;
+  color: #ef5350;
+  background: white;
+}
+
+.vtm-deactivate:hover:not(:disabled) {
+  background: #ef5350;
+  color: white;
+}
+
+.vtm-activate {
+  border-color: #4caf50;
+  color: #4caf50;
+  background: white;
+}
+
+.vtm-activate:hover:not(:disabled) {
+  background: #4caf50;
+  color: white;
+}
+
+/* Loading & Error */
+.vtm-loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.vtm-error {
+  background: #fee;
+  color: #c33;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #c33;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.vtm-error-inline {
+  background: #fee;
+  color: #c33;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  border-left: 4px solid #c33;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.vtm-retry-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #c33;
+  border-radius: 4px;
+  background: white;
+  color: #c33;
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.vtm-retry-btn:hover {
+  background: #c33;
+  color: white;
+}
+
+.vtm-empty {
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vehicle-type-manager {
+    padding: 1rem;
+  }
+
+  .vtm-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .vtm-table {
+    font-size: 0.8rem;
+  }
+
+  .vtm-actions {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}

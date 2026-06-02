@@ -1,0 +1,197 @@
+/* ============================================
+   DARK MODE THEME
+   Ativado pela classe .dark no <html>
+   ============================================ */
+
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --border-color: #e0e0e0;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --accent: #667eea;
+  --accent-hover: #5a6fd6;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+}
+
+:root.dark {
+  --bg-primary: #1a1a2e;
+  --bg-secondary: #16213e;
+  --bg-card: #0f3460;
+  --bg-input: #1a1a2e;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #808080;
+  --border-color: #2a2a4a;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --accent: #7c8cf8;
+  --accent-hover: #9ba5ff;
+  --success: #66bb6a;
+  --warning: #ffa726;
+  --danger: #ef5350;
+  --gradient-start: #1a1a2e;
+  --gradient-end: #16213e;
+}
+
+/* Global dark mode overrides */
+.dark .app {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+}
+
+.dark .checkin-form,
+.dark .vehicles-section,
+.dark .current-vehicles-panel,
+.dark .parking-history,
+.dark .wash-history,
+.dark .dashboard-section,
+.dark .summary-card,
+.dark .occupancy-bar-container,
+.dark .vehicle-card,
+.dark .status-column,
+.dark .settings-modal {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark .checkin-form h2,
+.dark .vehicles-section h2,
+.dark .parking-panel-header h1,
+.dark .wash-queue-header h1,
+.dark .dashboard-header h2,
+.dark .dashboard-section h3,
+.dark .settings-header h2 {
+  color: var(--text-primary);
+}
+
+.dark .form-group label,
+.dark .metric-row,
+.dark .history-subtitle,
+.dark .section-note {
+  color: var(--text-secondary);
+}
+
+.dark .form-group input,
+.dark .form-group select,
+.dark .search-input,
+.dark .rate-field input,
+.dark .form-row input {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.dark .form-group input:focus,
+.dark .form-group select:focus,
+.dark .search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124, 140, 248, 0.2);
+}
+
+.dark .history-table th {
+  color: var(--text-muted);
+  border-bottom-color: var(--border-color);
+}
+
+.dark .history-table td {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark .history-table tr:hover td {
+  background: rgba(124, 140, 248, 0.1);
+}
+
+.dark .mini-table th {
+  color: var(--text-muted);
+  border-bottom-color: var(--border-color);
+}
+
+.dark .mini-table td {
+  color: var(--text-primary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark .error-message {
+  background: rgba(239, 83, 80, 0.15);
+  border-left-color: var(--danger);
+  color: #ff8a80;
+}
+
+.dark .metric-row.highlight {
+  background: rgba(124, 140, 248, 0.1);
+}
+
+.dark .rate-card {
+  background: rgba(124, 140, 248, 0.08);
+  border-color: var(--border-color);
+}
+
+.dark .fipe-data,
+.dark .fipe-info {
+  background: rgba(124, 140, 248, 0.05);
+}
+
+.dark .fipe-item {
+  background: var(--bg-card);
+}
+
+.dark .nav-button {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .settings-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.dark .load-more-btn,
+.dark .history-toggle-btn,
+.dark .settings-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: transparent;
+}
+
+.dark .load-more-btn:hover,
+.dark .history-toggle-btn:hover,
+.dark .settings-btn:hover,
+.dark .history-toggle-btn.active {
+  background: var(--accent);
+  color: white;
+}
+
+.dark .dashboard-date {
+  color: var(--text-muted);
+}
+
+.dark .empty-state p,
+.dark .empty-history {
+  color: var(--text-muted);
+}
+
+.dark .card-content {
+  background: var(--bg-card);
+}
+
+.dark .pricing-calculation {
+  background: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.dark .settings-section {
+  border-bottom-color: var(--border-color);
+}
+
+.dark .cancel-btn {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}

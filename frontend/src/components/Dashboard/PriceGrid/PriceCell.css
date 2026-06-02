@@ -1,0 +1,189 @@
+/* PriceCell — Inline editable price cell */
+
+.price-cell-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  position: relative;
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+  transition: background 0.2s, border-color 0.3s, box-shadow 0.3s;
+  border: 2px solid transparent;
+  min-width: 90px;
+}
+
+.price-cell-container--idle:hover {
+  background: #f0f4ff;
+  border-color: #c5d4f7;
+}
+
+.price-cell-container--idle:hover .price-cell-remove-btn {
+  opacity: 1;
+}
+
+/* Default price styling */
+.price-cell-container--default .price-cell-value {
+  color: #888;
+  font-style: italic;
+}
+
+.price-cell-value {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.price-cell-value--default {
+  color: #888;
+  font-style: italic;
+}
+
+.price-cell-badge {
+  font-size: 0.65rem;
+  color: #ff9800;
+  font-weight: 500;
+  background: #fff3e0;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* Remove button */
+.price-cell-remove-btn {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  color: #c33;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s, background 0.2s;
+  line-height: 1;
+  padding: 0;
+}
+
+.price-cell-remove-btn:hover {
+  background: #fee;
+  border-color: #c33;
+}
+
+/* Editing state */
+.price-cell-container--editing {
+  cursor: default;
+}
+
+.price-cell-input {
+  width: 90px;
+  padding: 0.3rem 0.4rem;
+  border: 2px solid #667eea;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  background: #fff;
+  transition: border-color 0.2s;
+}
+
+.price-cell-input:focus {
+  border-color: #4c63d2;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+}
+
+.price-cell-input--error {
+  border-color: #c33;
+}
+
+.price-cell-input--error:focus {
+  box-shadow: 0 0 0 3px rgba(204, 51, 51, 0.15);
+}
+
+.price-cell-validation-error {
+  font-size: 0.65rem;
+  color: #c33;
+  margin-top: 0.15rem;
+  white-space: nowrap;
+}
+
+/* Saving state */
+.price-cell-container--saving {
+  cursor: wait;
+}
+
+.price-cell-saving-indicator {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: price-cell-pulse 0.8s ease-in-out infinite;
+}
+
+@keyframes price-cell-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Success state */
+.price-cell-container--success {
+  border-color: #4caf50;
+  background: #e8f5e9;
+  animation: price-cell-success-flash 1.5s ease-out;
+}
+
+.price-cell-success-icon {
+  color: #4caf50;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+@keyframes price-cell-success-flash {
+  0% { background: #c8e6c9; border-color: #4caf50; }
+  100% { background: #e8f5e9; border-color: #4caf50; }
+}
+
+/* Error state */
+.price-cell-container--error {
+  border-color: #c33;
+  background: #fee;
+  animation: price-cell-error-flash 0.5s ease-out;
+}
+
+@keyframes price-cell-error-flash {
+  0% { background: #ffcdd2; }
+  100% { background: #fee; }
+}
+
+.price-cell-error-toast {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #c33;
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.price-cell-error-toast::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #c33;
+}

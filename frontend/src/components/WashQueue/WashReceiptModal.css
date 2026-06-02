@@ -1,0 +1,238 @@
+/* WashReceiptModal - Receipt styles for wash checkout */
+
+.wash-receipt-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 380px;
+  width: 90%;
+  overflow: hidden;
+  animation: receipt-appear 0.4s ease-out;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Receipt Header */
+.wash-receipt-header {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.wash-receipt-header h2 {
+  margin: 0 0 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.wash-receipt-header .receipt-emission {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Receipt Body */
+.wash-receipt-body {
+  padding: 1.25rem;
+}
+
+.wash-receipt-body .receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  min-height: 28px;
+  gap: 8px;
+}
+
+.wash-receipt-body .receipt-label {
+  font-size: 0.82rem;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.wash-receipt-body .receipt-value {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1e293b;
+  text-align: right;
+  word-break: break-word;
+}
+
+.wash-receipt-body .receipt-value.plate {
+  font-size: 1rem;
+  color: #667eea;
+  font-weight: 700;
+}
+
+.wash-receipt-body .receipt-divider {
+  border: none;
+  border-top: 1px dashed #e2e8f0;
+  margin: 8px 0;
+}
+
+/* Total section */
+.wash-receipt-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.wash-receipt-total .receipt-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.wash-receipt-total .total-amount {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+/* Footer */
+.wash-receipt-footer {
+  text-align: center;
+  padding: 0.75rem 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-style: italic;
+}
+
+/* Actions */
+.wash-receipt-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0 1.25rem 1.25rem;
+}
+
+.wash-receipt-actions .receipt-btn {
+  flex: 1;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.wash-receipt-actions .print-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.wash-receipt-actions .print-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.wash-receipt-actions .close-btn {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+}
+
+.wash-receipt-actions .close-btn:hover {
+  background: #e2e8f0;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body > *:not(#root) {
+    display: none !important;
+  }
+
+  .app,
+  .app-header,
+  .app-nav,
+  .app-content,
+  .wash-queue,
+  .toast-container {
+    all: unset !important;
+    display: contents !important;
+  }
+
+  .modal-overlay {
+    position: static !important;
+    background: none !important;
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .wash-receipt-modal {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    animation: none !important;
+  }
+
+  .wash-receipt-header {
+    background: #22c55e !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .wash-receipt-actions {
+    display: none !important;
+  }
+
+  .wash-receipt-body {
+    padding: 1.5rem !important;
+  }
+
+  .wash-receipt-body .receipt-row {
+    padding: 0.5rem 0 !important;
+  }
+
+  .wash-receipt-body .receipt-label {
+    color: #333 !important;
+  }
+
+  .wash-receipt-body .receipt-value {
+    color: #000 !important;
+  }
+
+  .wash-receipt-body .receipt-value.plate {
+    color: #000 !important;
+  }
+
+  .wash-receipt-total .total-amount {
+    color: #000 !important;
+    font-size: 1.5rem !important;
+  }
+
+  @page {
+    size: 80mm auto;
+    margin: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .wash-receipt-modal {
+    width: 95%;
+    max-width: none;
+  }
+
+  .wash-receipt-header {
+    padding: 1.25rem 1rem;
+  }
+
+  .wash-receipt-body {
+    padding: 1rem;
+  }
+
+  .wash-receipt-actions {
+    padding: 0 1rem 1rem;
+  }
+}

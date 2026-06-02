@@ -1,0 +1,89 @@
+.occupancy-bar-container {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #4caf50;
+}
+
+.occupancy-bar-container.yellow {
+  border-left-color: #ff9800;
+}
+
+.occupancy-bar-container.red {
+  border-left-color: #f44336;
+}
+
+.occupancy-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.occupancy-label {
+  font-weight: 600;
+  color: #333;
+}
+
+.occupancy-numbers {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.occupancy-status {
+  margin-left: auto;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.occupancy-status.green {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.occupancy-status.yellow {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.occupancy-status.red {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.occupancy-bar {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+
+.occupancy-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.occupancy-fill.green {
+  background: #4caf50;
+}
+
+.occupancy-fill.yellow {
+  background: #ff9800;
+}
+
+.occupancy-fill.red {
+  background: #f44336;
+}
+
+.occupancy-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #888;
+}
