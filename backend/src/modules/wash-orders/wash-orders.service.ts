@@ -261,12 +261,23 @@ export class WashOrderService {
         );
       }
 
-      // Fetch the service details for the response
-      const { data: service, error: serviceError } = await supabase
-        .from('wash_services')
-        .select('*')
-        .eq('id', updatedOrder.wash_service_id)
-        .single();
+      // Fetch service details and vehicle type in PARALLEL for better performance
+      const [serviceResult, vehicleTypeResult] = await Promise.all([
+        supabase
+          .from('wash_services')
+          .select('*')
+          .eq('id', updatedOrder.wash_service_id)
+          .single(),
+        updatedOrder.vehicle_type_id
+          ? supabase
+              .from('vehicle_types')
+              .select('id, name, code')
+              .eq('id', updatedOrder.vehicle_type_id)
+              .single()
+          : Promise.resolve({ data: null, error: null }),
+      ]);
+
+      const { data: service, error: serviceError } = serviceResult;
 
       if (serviceError || !service) {
         throw new ServiceUnavailableError(
@@ -274,16 +285,7 @@ export class WashOrderService {
         );
       }
 
-      // Fetch vehicle type if available (no rates needed — wash uses fixed price)
-      let vehicleType = null;
-      if (updatedOrder.vehicle_type_id) {
-        const { data: vt } = await supabase
-          .from('vehicle_types')
-          .select('id, name, code')
-          .eq('id', updatedOrder.vehicle_type_id)
-          .single();
-        vehicleType = vt;
-      }
+      const vehicleType = vehicleTypeResult.data || null;
 
       return this.formatWashOrderResponse(updatedOrder, service, vehicleType);
     } catch (error) {
