@@ -53,14 +53,35 @@ export class ParkingController {
         return;
       }
 
-      // Validate vehicleTypeId format if provided (Requirement 10.1)
-      // vehicleTypeId is optional for backward compatibility with existing frontend
-      if (vehicleTypeId) {
-        const validation = validateVehicleTypeIdWithResult(vehicleTypeId);
-        if (!validation.isValid) {
-          res.status(422).json({ error: validation.error });
+      // Validate that vehicleTypeId is provided (Requirement 2.2)
+      if (!vehicleTypeId) {
+        res.status(422).json({ error: 'vehicleTypeId é obrigatório' });
+        return;
+      }
+
+      // Validate vehicleTypeId format (Requirement 10.1)
+      const validation = validateVehicleTypeIdWithResult(vehicleTypeId);
+      if (!validation.isValid) {
+        res.status(422).json({ error: validation.error });
+        return;
+      }
+
+      // Validate that vehicle type exists and is active (Requirements 2.3, 2.4)
+      let vehicleType;
+      try {
+        vehicleType = await this.vehicleTypeService.getById(vehicleTypeId);
+      } catch (error) {
+        if (error instanceof NotFoundError) {
+          res.status(422).json({ error: 'Tipo de veículo não encontrado' });
           return;
         }
+        throw error;
+      }
+
+      // Check if vehicle type is active (Requirement 2.3)
+      if (!vehicleType.isActive) {
+        res.status(422).json({ error: 'Tipo de veículo não está disponível' });
+        return;
       }
 
       const result = await this.service.checkIn({
@@ -68,27 +89,16 @@ export class ParkingController {
         vehicleTypeId,
       });
 
-      // Enrich response with vehicleType object (Requirement 2.1, 9.3)
-      let vehicleType = null;
-      if (vehicleTypeId) {
-        try {
-          vehicleType = await this.vehicleTypeService.getById(vehicleTypeId);
-        } catch {
-          // vehicleType may have been validated by service already
-        }
-      }
-
+      // Return HTTP 201 with ExtendedParkingRecord including vehicleType (Requirements 2.1, 9.3)
       res.status(201).json({
         ...result,
-        vehicleType: vehicleType
-          ? {
-              id: vehicleType.id,
-              name: vehicleType.name,
-              code: vehicleType.code,
-              hourlyRate: vehicleType.hourlyRate,
-              dailyRate: vehicleType.dailyRate,
-            }
-          : null,
+        vehicleType: {
+          id: vehicleType.id,
+          name: vehicleType.name,
+          code: vehicleType.code,
+          hourlyRate: vehicleType.hourlyRate,
+          dailyRate: vehicleType.dailyRate,
+        },
       });
     } catch (error) {
       if (error instanceof ValidationError) {

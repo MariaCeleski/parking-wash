@@ -37,5 +37,21 @@ export const updateVehicleTypeSchema = z.object({
     .max(50, 'Nome deve ter no máximo 50 caracteres'),
 });
 
+/**
+ * Schema for updating vehicle type rates
+ * Validates:
+ * - hourly_rate: required, number >= 0.01
+ * - daily_rate: required, number >= 0.01
+ */
+export const updateRatesSchema = z.object({
+  hourly_rate: z
+    .number({ required_error: 'hourly_rate é obrigatório' })
+    .min(0.01, 'hourly_rate deve ser maior que 0.01'),
+  daily_rate: z
+    .number({ required_error: 'daily_rate é obrigatório' })
+    .min(0.01, 'daily_rate deve ser maior que 0.01'),
+});
+
 export type CreateVehicleTypeRequest = z.infer<typeof createVehicleTypeSchema>;
 export type UpdateVehicleTypeRequest = z.infer<typeof updateVehicleTypeSchema>;
+export type UpdateRatesRequest = z.infer<typeof updateRatesSchema>;

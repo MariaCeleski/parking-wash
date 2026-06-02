@@ -5,6 +5,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { VehicleTypeService } from './vehicle-type.service';
+import { NotFoundError, ValidationError } from '../../middleware/errors';
 
 export class VehicleTypeController {
   private service = new VehicleTypeService();
@@ -88,7 +89,17 @@ export class VehicleTypeController {
 
   /**
    * PATCH /api/vehicle-types/:id
-   * Update vehicle type rates
+   * Update vehicle type rates (hourly_rate, daily_rate)
+   * 
+   * Validates:
+   * - hourly_rate and daily_rate are required and >= 0.01
+   * 
+   * Returns:
+   * - HTTP 200 with updated VehicleType
+   * - HTTP 422 if validation fails
+   * - HTTP 404 if vehicle type not found
+   * 
+   * Requirements: 1.5, 1.6, 1.7
    */
   async updateRates(
     req: Request,
@@ -97,26 +108,47 @@ export class VehicleTypeController {
   ): Promise<void> {
     try {
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-      const { hourlyRate, dailyRate } = req.body;
+      const { hourly_rate, daily_rate } = req.body;
 
-      // Validate request body
-      if (hourlyRate === undefined || dailyRate === undefined) {
+      // Validate request body format
+      if (hourly_rate === undefined || daily_rate === undefined) {
         res.status(422).json({
-          error: 'hourlyRate e dailyRate são obrigatórios',
+          error: 'hourly_rate e daily_rate são obrigatórios',
         });
         return;
       }
 
-      if (typeof hourlyRate !== 'number' || typeof dailyRate !== 'number') {
+      if (typeof hourly_rate !== 'number' || typeof daily_rate !== 'number') {
         res.status(422).json({
-          error: 'hourlyRate e dailyRate devem ser números',
+          error: 'hourly_rate e daily_rate devem ser números',
         });
         return;
       }
 
-      const updatedVehicleType = await this.service.updateRates(id, hourlyRate, dailyRate);
+      // Validate minimum values
+      if (hourly_rate < 0.01 || daily_rate < 0.01) {
+        res.status(422).json({
+          error: 'As tarifas devem ser maiores que 0.01',
+        });
+        return;
+      }
+
+      const updatedVehicleType = await this.service.updateRates(id, hourly_rate, daily_rate);
       res.status(200).json(updatedVehicleType);
     } catch (error) {
+      // Handle specific error types
+      if (error instanceof NotFoundError) {
+        res.status(404).json({
+          error: 'Tipo de veículo não encontrado',
+        });
+        return;
+      }
+      if (error instanceof ValidationError) {
+        res.status(422).json({
+          error: (error as ValidationError).message,
+        });
+        return;
+      }
       next(error);
     }
   }

@@ -6,7 +6,7 @@
 import { Router } from 'express';
 import { VehicleTypeController } from './vehicle-type.controller';
 import { validate } from '../../middleware/validate.middleware';
-import { createVehicleTypeSchema, updateVehicleTypeSchema } from './vehicle-type.validator';
+import { createVehicleTypeSchema, updateVehicleTypeSchema, updateRatesSchema } from './vehicle-type.validator';
 
 const router = Router();
 const controller = new VehicleTypeController();
@@ -37,8 +37,8 @@ router.patch('/:id/toggle-active', (req, res, next) => controller.toggleActive(r
 
 /**
  * PATCH /api/vehicle-types/:id
- * Update vehicle type rates (legacy endpoint)
+ * Update vehicle type rates (hourly_rate, daily_rate)
  */
-router.patch('/:id', (req, res, next) => controller.updateRates(req, res, next));
+router.patch('/:id', validate(updateRatesSchema), (req, res, next) => controller.updateRates(req, res, next));
 
 export default router;
